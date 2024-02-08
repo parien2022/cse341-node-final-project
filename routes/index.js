@@ -1,3 +1,4 @@
+//TESTING BASS
 const routesPayments = require('./paymentMethods');
 const routeSwagger = require('./swagger');
 
