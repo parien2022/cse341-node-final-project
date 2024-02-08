@@ -5,11 +5,11 @@
     "description": "Clothing API",
     "version": "1.0.0"
   },
-  "host": "localhost:8082",
+  "host": "clothing-store-api.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http",
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/paymentMethods/": {
