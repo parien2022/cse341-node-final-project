@@ -5,8 +5,8 @@ const doc = {
     title: 'Clothing API',
     description: 'Clothing API',
   },
-  host: 'localhost:8082',
-  schemes: ['http', 'https'],
+  host: 'clothing-store-api.onrender.com',
+  schemes: ['https', 'http'],
 }
 
 const outputFile = './swagger.json'
