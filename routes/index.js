@@ -1,5 +1,5 @@
 const routesPayments = require('./paymentMethods');
-const routeSwagger = require('./swagger');
+//const routeSwagger = require('./swagger');
 
 const express = require('express');
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 //router.use('/clothes', )
 router.use('/orders', require('./orders'));
 router.use('/paymentMethods', routesPayments)
-router.use('/', routeSwagger)
+router.use('/', require('./swagger'));
 
 //router.get('/login', passport.authenticate('github'), (req, res) => {});
 /*
