@@ -1,5 +1,5 @@
 const express = require('express')
-const paymentController = require('../controller/paymentMethods')
+const paymentController = require('../controllers/paymentMethods')
 const validation = require('../middleware/validate')
 //const authenticate = require('../middleware/authenticate')
 

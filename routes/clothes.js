@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const clothesController = require('../controller/clothes');
+const clothesController = require('../controllers/clothes');
 // const validation = require('../middleware/validate');
 const { isAuthenticated } = require('../middleware/authenticate');
 

@@ -7,7 +7,7 @@ const routeSwagger = require('./swagger');
 
 //router.use('/users', )
 router.use('/clothes',routesClothes )
-router.use('/orders', )
+//router.use('/orders', )
 router.use('/paymentMethods', routesPayments)
 router.use('/', routeSwagger)
 
