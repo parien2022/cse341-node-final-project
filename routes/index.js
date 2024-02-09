@@ -7,22 +7,19 @@ const router = express.Router();
 
 router.use('/users', )
 router.use('/clothes', )
-router.use('/orders', )
+router.use('/orders', require('./orders'));
 router.use('/paymentMethods', routesPayments)
 router.use('/', routeSwagger)
 
-/*router.get(
-  '/login',
-  passport.authenticate('github', (req, res) => {}),
-)
+router.get('/login', passport.authenticate('github'), (req, res) => {});
 
 router.get('/logout', function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err)
-    }
-    res.redirect('/')
-  })
-})*/
+    req.logout(function (err) {
+       if (err) {
+            return next(err);
+      }
+        res.redirect('/');
+    });
+});
 
 module.exports = router
