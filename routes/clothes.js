@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const router = require("express").Router();
 
-const clothesController = require('../controllers/clothes');
+const clothesController = require('../controller/clothes');
 // const validation = require('../middleware/validate');
-const { isAuthenticated } = require('../middleware/authentication');
+const { isAuthenticated } = require('../middleware/authenticate');
 
 router.get('/', clothesController.getAll);
 

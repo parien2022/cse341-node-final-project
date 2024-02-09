@@ -2,7 +2,7 @@ const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-  const result = await mongodb.getDb().db().collection('clothes').find();
+  const result = await mongodb.getDataBase().db().collection('clothes').find();
   result.toArray().then((lists, err) => {
       if (err) {
         res.status(400).json({ message: err });
@@ -17,7 +17,7 @@ const getSingle = async (req, res) => {
     res.status(400).json('Must use a valid clothes id to find a clothes.');
   }
   const clothesId = new ObjectId(req.params.id);
-  const result = await mongodb.getDb().db().collection('clothes').find({ _id: clothesId });
+  const result = await mongodb.getDataBase().db().collection('clothes').find({ _id: clothesId });
   result.toArray().then((lists, err) => {
       if (err) {
         res.status(400).json({ message: err });
@@ -35,7 +35,7 @@ const createClothes = async (req, res) => {
     description: req.body.description,
     image: req.body.image,
   };
-  const response = await mongodb.getDb().db().collection('clothes').insertOne(clothes);
+  const response = await mongodb.getDataBase().db().collection('clothes').insertOne(clothes);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
@@ -59,7 +59,7 @@ const updateClothes = async (req, res) => {
   
   };
   const response = await mongodb
-    .getDb()
+    .getDataBase()
     .db()
     .collection('clothes')
     .replaceOne({ _id: userId }, clothes);
@@ -76,7 +76,7 @@ const deleteClothes = async (req, res) => {
     res.status(400).json('Must use a valid clothes id to delete a movie.');
   }
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDb().db().collection('clothes').deleteOne({ _id: userId }, true);
+  const response = await mongodb.getDataBase().db().collection('clothes').deleteOne({ _id: userId }, true);
   console.log(response);
   if (response.deletedCount > 0) {
     res.status(204).send();
