@@ -1,5 +1,6 @@
-//TESTING BASS2
+
 const routesPayments = require('./paymentMethods');
+const routesClothes = require('./clothes');
 const routeSwagger = require('./swagger');
 
 const express = require('express');
@@ -7,7 +8,7 @@ const router = express.Router();
 //const passport = require('passport');
 
 router.use('/users', )
-router.use('/clothes', )
+router.use('/clothes',routesClothes )
 router.use('/orders', )
 router.use('/paymentMethods', routesPayments)
 router.use('/', routeSwagger)
