@@ -2,32 +2,44 @@ const mongodb = require("../db/connection");
 const ObjectId = require("mongodb").ObjectId;
 
 //getOrders
-const getOrders = (req, res) => {
+const getOrders = async (req, res) => {
     //#swagger.tags=['Orders']
-    const result = mongodb.getDataBase().db().collection("orders").find();
-    result.toArray().then((order) => {
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).json(order);
-    });
-};
+    await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('orders')
+    .find()
+    .toArray()
+    .then((orders) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(orders)
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
 
 //getOrder
-const getOrder = (req, res) => {
+const getOrder = async  (req, res) => {
     //#swagger.tags=['Orders']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json("Must use a valid ID to find an order.");
     }
     const orderId = new ObjectId(req.params.id);
-    const result = mongodb
-        .getDataBase()
-        .db()
-        .collection("orders")
-        .find({ _id: orderId });
-    result.toArray().then((player) => {
-        res.setHeader("Content-Type", "application/json");
-        res.status(200).json(player[0]);
-    });
-};
+    await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('orders')
+    .find({ _id: orderId })
+    .toArray()
+    .then((order) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(order[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
 
 //createOrder
 const createOrder = async (req, res) => {
@@ -41,7 +53,7 @@ const createOrder = async (req, res) => {
 
     const response = await mongodb
         .getDataBase()
-        .db()
+        .db('clotheStore')
         .collection("orders")
         .insertOne(order);
     if (response.acknowledge) {
@@ -69,7 +81,7 @@ const updateOrder = async (req, res) => {
 
     const response = await mongodb
         .getDataBase()
-        .db()
+        .db('clotheStore')
         .collection("orders")
         .replaceOne({ _id: orderId }, order);
     console.log(response);
@@ -90,10 +102,9 @@ const deleteOrder = async (req, res) => {
     }
     const orderId = new ObjectId(req.params.id);
     const response = await mongodb
-        .getDataBase()
-        .db()
+    .db('clotheStore')
         .collection("orders")
-        .deleteOne({ _id: orderId }, true);
+        .deleteOne({ _id: orderId });
     if (response.deleteCount > 0) {
         res.status(204).send();
     } else {
@@ -110,3 +121,5 @@ module.exports = {
     updateOrder,
     deleteOrder,
 };
+
+
