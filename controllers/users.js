@@ -57,7 +57,7 @@ const createUser = async (req, res) => {
     .collection('users')
     .insertOne(user)
   if (response.acknowledge) {
-    res.status(201).json(response)
+    res.status(201).json({ _id: response.insertedId })
   } else {
     res
       .status(500)
