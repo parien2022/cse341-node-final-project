@@ -20,8 +20,13 @@ const getAll = async (req, res) => {
 
 const getSingle = async (req, res) => {
    if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to find a clothes.');
-  }
+        res.status(400).json("Must use a valid ID to find an clothes.");
+    }
+
+   const clothesId = new ObjectId(req.params.id)
+  //  if (!ObjectId.isValid(req.params.id)) {
+  //   res.status(400).json('Must use a valid clothes id to find a clothes.');
+  //}
   await mongodb
     .getDataBase()
     .db('clotheStore')
