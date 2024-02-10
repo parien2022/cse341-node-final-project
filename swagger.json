@@ -5,9 +5,7 @@
     "description": "Clothing API",
     "version": "1.0.0"
   },
-
-  "host": "localhost:8082",
-
+  "host": "clothing-store-api.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
@@ -188,9 +186,6 @@
     },
     "/clothes/": {
       "get": {
-        "tags": [
-          "Clothes"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -205,9 +200,6 @@
         }
       },
       "post": {
-        "tags": [
-          "Clothes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -247,9 +239,6 @@
     },
     "/clothes/{id}": {
       "get": {
-        "tags": [
-          "Clothes"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -272,9 +261,6 @@
         }
       },
       "put": {
-        "tags": [
-          "Clothes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -324,9 +310,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Clothes"
-        ],
         "description": "",
         "parameters": [
           {
@@ -364,6 +347,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
@@ -514,9 +500,6 @@
     },
     "/paymentMethods/": {
       "get": {
-        "tags": [
-          "paymentMethods"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -531,9 +514,6 @@
         }
       },
       "post": {
-        "tags": [
-          "paymentMethods"
-        ],
         "description": "",
         "parameters": [
           {
@@ -542,10 +522,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "method": {
+                "method_name": {
                   "example": "any"
                 },
-                "currency": {
+                "issuer": {
+                  "example": "any"
+                },
+                "card_number": {
+                  "example": "any"
+                },
+                "expiration_date": {
+                  "example": "any"
+                },
+                "cvv": {
                   "example": "any"
                 }
               }
@@ -567,9 +556,6 @@
     },
     "/paymentMethods/{id}": {
       "get": {
-        "tags": [
-          "paymentMethods"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -592,9 +578,6 @@
         }
       },
       "put": {
-        "tags": [
-          "paymentMethods"
-        ],
         "description": "",
         "parameters": [
           {
@@ -609,10 +592,19 @@
             "schema": {
               "type": "object",
               "properties": {
-                "method": {
+                "method_name": {
                   "example": "any"
                 },
-                "currency": {
+                "issuer": {
+                  "example": "any"
+                },
+                "card_number": {
+                  "example": "any"
+                },
+                "expiration_date": {
+                  "example": "any"
+                },
+                "cvv": {
                   "example": "any"
                 }
               }
@@ -635,9 +627,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "paymentMethods"
-        ],
         "description": "",
         "parameters": [
           {
@@ -656,6 +645,30 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/paymentMethods/name/{method_name}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "method_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
