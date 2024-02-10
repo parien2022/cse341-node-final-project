@@ -419,10 +419,7 @@
                 "date": {
                   "example": "any"
                 },
-                "status": {
-                  "example": "any"
-                },
-                "cart": {
+                "conditions": {
                   "example": "any"
                 }
               }
@@ -433,8 +430,8 @@
           "201": {
             "description": "Created"
           },
-          "401": {
-            "description": "Unauthorized"
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -492,10 +489,7 @@
                 "date": {
                   "example": "any"
                 },
-                "status": {
-                  "example": "any"
-                },
-                "cart": {
+                "conditions": {
                   "example": "any"
                 }
               }
@@ -509,8 +503,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "401": {
-            "description": "Unauthorized"
+          "412": {
+            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -537,16 +531,13 @@
           "400": {
             "description": "Bad Request"
           },
-          "401": {
-            "description": "Unauthorized"
-          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/orders/status/{status}": {
+    "/orders/name/{conditions}": {
       "get": {
         "tags": [
           "Orders"
@@ -557,7 +548,7 @@
         ],
         "parameters": [
           {
-            "name": "status",
+            "name": "conditions",
             "in": "path",
             "required": true,
             "type": "string"
