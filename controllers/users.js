@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
   const user = {
     name: req.body.name,
     lastName: req.body.lastName,
-    mail: req.body.email,
+    mail: req.body.mail,
     phone: req.body.phone,
     city:req.body.city,
     user: req.body.user,

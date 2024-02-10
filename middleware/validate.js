@@ -66,8 +66,34 @@ const validateClothes = async (req, res, next) => {
   }).catch((err) => console.log(err))
 }
 
+
+const validateUsers = async (req, res, next) => {
+  const validateRule = {
+    name: 'required|string',
+    lastName: 'required|string',
+    mail: 'required|email',
+    phone: 'required|string',
+    city: 'required|string',
+    user: 'required|string',
+    password: 'required|string',
+  }
+
+  await validator(req.body, validateRule, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: 'Validation failed',
+        data: err,
+      })
+    } else {
+      next()
+    }
+  }).catch((err) => console.log(err))
+}
+
 module.exports = {
   validatePaymentMethod,
   validateOrders,
-  validateClothes
+  validateClothes,
+  validateUsers
 }
