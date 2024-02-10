@@ -120,7 +120,7 @@ const deleteClothes = async (req, res) => {
   }
   const clothesId = new ObjectId(req.params.id);
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('clothes')
     .deleteOne({
