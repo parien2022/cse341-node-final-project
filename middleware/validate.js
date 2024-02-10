@@ -2,8 +2,11 @@ const validator = require('../helpers/validate')
 
 const validatePaymentMethod = async (req, res, next) => {
   const validationRule = {
-    method: 'required|string',
-    currency: 'required|string'
+    method_name: 'required|string',
+    issuer: 'required|string',
+    card_number: 'required|string',
+    expiration_date: 'required|string',
+    cvv: 'required|string'
   }
 
   await validator(req.body, validationRule, {}, (err, status) => {
