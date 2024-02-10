@@ -7,7 +7,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
 router.get('/', clothesController.getAll);
 
 router.get('/:id', clothesController.getSingle);
-router.get('/name/:category_name', clothesController.getSingleByCategory);
+router.get('/:category', clothesController.getSingleByCategory);
 router.post('/', clothesController.createClothes);
 
 // router.post('/', validation.saveContact, clothesController.createContact);
