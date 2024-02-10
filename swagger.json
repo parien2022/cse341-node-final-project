@@ -14,6 +14,9 @@
   "paths": {
     "/clothes/": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -28,6 +31,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -67,6 +73,9 @@
     },
     "/clothes/{id}": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -89,6 +98,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -138,6 +150,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -325,6 +340,9 @@
     },
     "/paymentMethods/": {
       "get": {
+        "tags": [
+          "paymentMethods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -339,6 +357,9 @@
         }
       },
       "post": {
+        "tags": [
+          "paymentMethods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -372,6 +393,9 @@
     },
     "/paymentMethods/{id}": {
       "get": {
+        "tags": [
+          "paymentMethods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -394,6 +418,9 @@
         }
       },
       "put": {
+        "tags": [
+          "paymentMethods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -434,6 +461,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "paymentMethods"
+        ],
         "description": "",
         "parameters": [
           {
