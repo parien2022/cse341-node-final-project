@@ -75,7 +75,7 @@ const createOrder = async (req, res) => {
     .db('clotheStore')
     .collection('orders')
     .insertOne(order)
-  if (response.acknowledge) {
+  if (response.acknowledged) {
     res.status(201).json({ _id: response.insertedId })
   } else {
     res
