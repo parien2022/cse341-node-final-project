@@ -22,7 +22,7 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
   //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to find a clothes.');
+    res.status(400).json('Must use a valid clothe id to find a clothe.');
   }
   await mongodb
     .getDataBase()
@@ -53,19 +53,20 @@ const createClothes = async (req, res) => {
     .db('clotheStore')
     .collection('clothes')
     .insertOne(clothes)
-  if (response.acknowledge) {
-    res.status(201).json(response)
-  } else {
-    res
-      .status(500)
-      .json(response.error || 'Some error occurred while inserting the clothes')
-  }
+
+    if (response.acknowledged) {
+      res.status(201).json(response)
+    } else {
+      res
+        .status(500)
+        .json(response.error || 'Some error ocurred while creating the clothe')
+    }
 };
 
 const updateClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to update a clothes.');
+    res.status(400).json('Must use a valid clothe id to update a clothe.');
   }
  
   const clothesId = new ObjectId(req.params.id);
@@ -87,14 +88,14 @@ const updateClothes = async (req, res) => {
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the clothes.');
+    res.status(500).json(response.error || 'Some error occurred while updating the clothe.');
   }
 };
 
 const deleteClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to delete a clothes.');
+    res.status(400).json('Must use a valid clothes id to delete a clothe.');
   }
   const clothesId = new ObjectId(req.params.id);
   const response = await mongodb
@@ -109,7 +110,7 @@ const deleteClothes = async (req, res) => {
   } else {
     res
       .status(500)
-      .json(response.error || 'Some error occurred while deleting the clothes')
+      .json(response.error || 'Some error occurred while deleting the clothe')
   }
 };
 module.exports = {
