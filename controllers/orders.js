@@ -1,5 +1,5 @@
-const mongodb = require("../db/connection");
-const ObjectId = require("mongodb").ObjectId;
+const mongodb = require('../db/connection')
+const ObjectId = require('mongodb').ObjectId
 
 //getOrders
 const getOrders = async (req, res) => {
@@ -40,6 +40,27 @@ const getOrder = async  (req, res) => {
       res.status(400).json({ message: err })
     })
 }
+
+const getOrderByStatus = async (req, res) => {
+     //#swagger.tags=['Orders']
+    const orderStatus = req.params.status;
+   
+    await mongodb
+      .getDataBase()
+      .db('clotheStore')
+      .collection('orders')
+      .find({ orderStatus: orderStatus })
+      .toArray()
+      .then((status) => {
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200).json(status[0])
+      })
+      .catch((err) => {
+        res.status(400).json({ message: err })
+      })
+  }
+
+
 
 //createOrder
 const createOrder = async (req, res) => {
@@ -117,6 +138,7 @@ const deleteOrder = async (req, res) => {
 module.exports = {
     getOrders,
     getOrder,
+    getOrderByStatus,
     createOrder,
     updateOrder,
     deleteOrder,
