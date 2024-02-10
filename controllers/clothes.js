@@ -3,6 +3,7 @@ const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
+   //#swagger.tags=['Orders']
   await mongodb
     .getDataBase()
     .db('clotheStore')
@@ -19,6 +20,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+   //#swagger.tags=['Orders']
    if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json("Must use a valid ID to find an clothes.");
     }
@@ -42,7 +44,27 @@ const getSingle = async (req, res) => {
     })
 };
 
+const getSingleByCategory = async (req, res) => {
+ //#swagger.tags=['Orders']
+  const methodName = req.params.method_name;
+
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .find({ category_name: category })
+    .toArray()
+    .then((method) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(method[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
+
 const createClothes = async (req, res) => {
+   //#swagger.tags=['Orders']
   const clothes = {
     title: req.body.title,
     price: req.body.price,
@@ -65,6 +87,7 @@ const createClothes = async (req, res) => {
 };
 
 const updateClothes = async (req, res) => {
+   //#swagger.tags=['Orders']
    if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid clothes id to update a clothes.');
   }
@@ -93,6 +116,7 @@ const updateClothes = async (req, res) => {
 };
 
 const deleteClothes = async (req, res) => {
+   //#swagger.tags=['Orders']
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid clothes id to delete a clothes.');
   }
@@ -117,5 +141,6 @@ module.exports = {
   getSingle,
   createClothes,
   updateClothes,
-  deleteClothes
+  deleteClothes,
+  getSingleByCategory
 };
