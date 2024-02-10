@@ -83,7 +83,7 @@ const updateUser = async (req, res) => {
   }
 
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('users')
     .replaceOne(
@@ -108,7 +108,7 @@ const deleteUser = async (req, res) => {
     }
   const userId = new ObjectId(req.params.id)
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('users')
     .deleteOne({
