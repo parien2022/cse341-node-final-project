@@ -3,29 +3,38 @@ const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
-  const result = await mongodb.getDataBase().db().collection('clothes').find();
-  result.toArray().then((lists, err) => {
-      if (err) {
-        res.status(400).json({ message: err });
-      }
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  });
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .find()
+    .toArray()
+    .then(() => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(clothes)
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
 };
 
 const getSingle = async (req, res) => {
    if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid clothes id to find a clothes.');
   }
-  const clothesId = new ObjectId(req.params.id);
-  const result = await mongodb.getDataBase().db().collection('clothes').find({ _id: clothesId });
-  result.toArray().then((lists, err) => {
-      if (err) {
-        res.status(400).json({ message: err });
-      }
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  });
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .find({ _id: clothesId })
+    .toArray()
+    .then((clothe) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(clothe[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
 };
 
 const createClothes = async (req, res) => {
@@ -36,17 +45,23 @@ const createClothes = async (req, res) => {
     description: req.body.description,
     image: req.body.image,
   };
-  const response = await mongodb.getDataBase().db().collection('clothes').insertOne(clothes);
-  if (response.acknowledged) {
-    res.status(201).json(response);
+ const response = await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .insertOne(clothes)
+  if (response.acknowledge) {
+    res.status(201).json(response)
   } else {
-    res.status(500).json(response.error || 'Some error occurred while creating the clothe.');
+    res
+      .status(500)
+      .json(response.error || 'Some error occurred while inserting the clothes')
   }
 };
 
 const updateClothes = async (req, res) => {
    if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to update a movie.');
+    res.status(400).json('Must use a valid clothes id to update a clothes.');
   }
  
   const clothesId = new ObjectId(req.params.id);
@@ -63,26 +78,33 @@ const updateClothes = async (req, res) => {
     .getDataBase()
     .db()
     .collection('clothes')
-    .replaceOne({ _id: userId }, clothes);
+    .replaceOne({ _id: clothesId }, clothes);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the movie.');
+    res.status(500).json(response.error || 'Some error occurred while updating the clothes.');
   }
 };
 
 const deleteClothes = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to delete a movie.');
+    res.status(400).json('Must use a valid clothes id to delete a clothes.');
   }
-  const userId = new ObjectId(req.params.id);
-  const response = await mongodb.getDataBase().db().collection('clothes').deleteOne({ _id: userId }, true);
-  console.log(response);
-  if (response.deletedCount > 0) {
-    res.status(204).send();
+  const clothesId = new ObjectId(req.params.id);
+  const response = await mongodb
+    .getDatabase()
+    .db('clotheStore')
+    .collection('clothes')
+    .deleteOne({
+      _id: clothesId,
+    })
+  if (response.deleteCount > 0) {
+    res.status(204).send()
   } else {
-    res.status(500).json(response.error || 'Some error occurred while deleting the clothes.');
+    res
+      .status(500)
+      .json(response.error || 'Some error occurred while deleting the clothes')
   }
 };
 module.exports = {
