@@ -43,13 +43,13 @@ const getOrder = async  (req, res) => {
 
 const getOrderByStatus = async (req, res) => {
      //#swagger.tags=['Orders']
-    const orderStatus = req.params.status;
+    const status = req.params.status;
    
     await mongodb
       .getDataBase()
       .db('clotheStore')
       .collection('orders')
-      .find({ orderStatus: orderStatus })
+      .find({ status: status })
       .toArray()
       .then((status) => {
         res.setHeader('Content-Type', 'application/json')
@@ -59,8 +59,6 @@ const getOrderByStatus = async (req, res) => {
         res.status(400).json({ message: err })
       })
   }
-
-
 
 //createOrder
 const createOrder = async (req, res) => {
