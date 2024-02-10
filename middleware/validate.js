@@ -22,4 +22,28 @@ const validatePaymentMethod = async (req, res, next) => {
   }).catch((err) => console.log(err))
 }
 
-module.exports = {validatePaymentMethod}
+
+const validateOrders = async (req, res, next) => {
+  const validateRule = {
+    user: 'required|string',
+    date: 'required|string',
+    conditions: 'required|string',
+  }
+
+  await validator(req.body, validateRule, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: 'Validation failed',
+        data: err,
+      })
+    } else {
+      next()
+    }
+  }).catch((err) => console.log(err))
+}
+
+module.exports = {
+  validatePaymentMethod,
+  validateOrders
+}

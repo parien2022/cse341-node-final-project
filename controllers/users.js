@@ -19,6 +19,10 @@ const getAll = async (req, res) => {
 }
 const getSingle = async (req, res) => {
   //#swagger.tags=['Users']
+   if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json("Must use a valid ID to find an user.");
+    }
+  
   const userId = new ObjectId(req.params.id)
   await mongodb
     .getDataBase()
@@ -63,6 +67,10 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   //#swagger.tags=['Users']
+   if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json("Must use a valid ID to find an order.");
+    }
+  
   const userId = new ObjectId(req.params.id)
   const user = {
     name: req.body.name,
@@ -95,6 +103,9 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   //#swagger.tags=['Users']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json("Must use a valid ID to find an order.");
+    }
   const userId = new ObjectId(req.params.id)
   const response = await mongodb
     .getDatabase()
