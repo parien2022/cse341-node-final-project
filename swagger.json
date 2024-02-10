@@ -150,6 +150,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -175,6 +178,9 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -186,6 +192,9 @@
     },
     "/clothes/": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -200,6 +209,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -239,6 +251,9 @@
     },
     "/clothes/{id}": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -261,6 +276,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -310,6 +328,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -331,6 +352,33 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/clothes/name/{category_name}": {
+      "get": {
+        "tags": [
+          "Clothes"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -498,8 +546,38 @@
         }
       }
     },
+    "/orders/{status}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/paymentMethods/": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -514,6 +592,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -556,6 +637,9 @@
     },
     "/paymentMethods/{id}": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -578,6 +662,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -627,6 +714,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -651,6 +741,9 @@
     },
     "/paymentMethods/name/{method_name}": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
