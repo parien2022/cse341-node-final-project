@@ -43,17 +43,17 @@ const getSingle = async (req, res) => {
 
 const getSingleByCategory = async (req, res) => {
   //#swagger.tags=['Clothes']
-  const category = req.params.category;
+  const categoryClothes = req.params.category;
 
   await mongodb
     .getDataBase()
     .db('clotheStore')
     .collection('clothes')
-    .find({ category: category })
+    .find({ category: categoryClothes })
     .toArray()
-    .then((category) => {
+    .then((categoryClothe) => {
       res.setHeader('Content-Type', 'application/json')
-      res.status(200).json(category[0])
+      res.status(200).json(categoryClothe[0])
     })
     .catch((err) => {
       res.status(400).json({ message: err })

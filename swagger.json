@@ -356,7 +356,7 @@
         }
       }
     },
-    "/clothes/category/{category}": {
+    "/clothes/name/{category}": {
       "get": {
         "tags": [
           "Clothes"
