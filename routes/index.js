@@ -1,10 +1,10 @@
-
-const router = require('express').Router();
+const routesPayments = require('./paymentMethods');
 const routesClothes = require('./clothes');
+const routesOrders = require('./orders');
+const routesPayments = require('./paymentMethods');
 const routeSwagger = require('./swagger');
 
-const routesPayments = require('./paymentMethods');
-//const routeSwagger = require('./swagger');
+const router = require('express').Router();
 
 
 //const passport = require('passport');
@@ -12,12 +12,10 @@ const routesPayments = require('./paymentMethods');
 //router.use('/users', )
 
 router.use('/clothes',routesClothes )
-
 router.use('/clothes',routesClothes )
-router.use('/orders', require('./orders'));
-
+router.use('/orders', routesOrders);
 router.use('/paymentMethods', routesPayments)
-router.use('/', require('./swagger'));
+router.use('/', routeSwagger);
 
 //router.get('/login', passport.authenticate('github'), (req, res) => {});
 /*
