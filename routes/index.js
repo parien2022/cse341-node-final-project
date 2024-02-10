@@ -1,4 +1,3 @@
-const routesPayments = require('./paymentMethods');
 const routesClothes = require('./clothes');
 const routesOrders = require('./orders');
 const routesPayments = require('./paymentMethods');
@@ -11,7 +10,6 @@ const router = require('express').Router();
 
 //router.use('/users', )
 
-router.use('/clothes',routesClothes )
 router.use('/clothes',routesClothes )
 router.use('/orders', routesOrders);
 router.use('/paymentMethods', routesPayments)
