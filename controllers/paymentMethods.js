@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
     })
 }
 
-const getSingle = async (req, res) => {
+const getSingleById = async (req, res) => {
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid company id')
   }
@@ -38,10 +38,32 @@ const getSingle = async (req, res) => {
     })
 }
 
+const getSingleByName = async (req, res) => {
+
+  const methodName = req.params.method_name;
+
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('paymentMethods')
+    .find({ method_name: methodName })
+    .toArray()
+    .then((method) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(method[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
+
 const createPaymentMethod = async (req, res) => {
   const payment = {
-    method: req.body.method,
-    currency: req.body.currency
+    method_name: req.body.method_name,
+    issuer: req.body.issuer,
+    card_number: req.body.card_number,
+    expiration_date: req.body.expiration_date,
+    cvv: req.body.cvv
   }
 
   const response = await mongodb
@@ -67,8 +89,11 @@ const updatePaymentMethod = async (req, res) => {
   const paymentId = new ObjectId(req.params.id)
 
   const payment = {
-    method: req.body.method,
-    currency: req.body.currency
+    method_name: req.body.method_name,
+    issuer: req.body.issuer,
+    card_number: req.body.card_number,
+    expiration_date: req.body.expiration_date,
+    cvv: req.body.cvv
   }
 
   const response = await mongodb
@@ -110,7 +135,8 @@ const deletePaymentMethod = async (req, res) => {
 
 module.exports = {
   getAll,
-  getSingle,
+  getSingleById,
+  getSingleByName,
   createPaymentMethod,
   updatePaymentMethod,
   deletePaymentMethod,
