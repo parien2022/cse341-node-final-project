@@ -44,24 +44,24 @@ const getSingle = async (req, res) => {
     })
 };
 
-const getSingleByCategory = async (req, res) => {
-  //#swagger.tags=['Clothes']
-  const category = req.params.category;
+// const getSingleByCategory = async (req, res) => {
+//   //#swagger.tags=['Clothes']
+//   const category = req.params.category;
 
-  await mongodb
-    .getDataBase()
-    .db('clotheStore')
-    .collection('clothes')
-    .find({ category: category })
-    .toArray()
-    .then((category) => {
-      res.setHeader('Content-Type', 'application/json')
-      res.status(200).json(category[0])
-    })
-    .catch((err) => {
-      res.status(400).json({ message: err })
-    })
-}
+//   await mongodb
+//     .getDataBase()
+//     .db('clotheStore')
+//     .collection('clothes')
+//     .find({ category: category })
+//     .toArray()
+//     .then((category) => {
+//       res.setHeader('Content-Type', 'application/json')
+//       res.status(200).json(category[0])
+//     })
+//     .catch((err) => {
+//       res.status(400).json({ message: err })
+//     })
+// }
 
 const createClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
