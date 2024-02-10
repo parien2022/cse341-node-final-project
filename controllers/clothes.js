@@ -3,6 +3,7 @@ const mongodb = require('../db/connection');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
+  //#swagger.tags=['Clothes']
   await mongodb
     .getDataBase()
     .db('clotheStore')
@@ -19,6 +20,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json("Must use a valid ID to find an clothes.");
     }
@@ -43,6 +45,7 @@ const getSingle = async (req, res) => {
 };
 
 const createClothes = async (req, res) => {
+  //#swagger.tags=['Clothes']
   const clothes = {
     title: req.body.title,
     price: req.body.price,
@@ -65,6 +68,7 @@ const createClothes = async (req, res) => {
 };
 
 const updateClothes = async (req, res) => {
+  //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid clothes id to update a clothes.');
   }
@@ -93,6 +97,7 @@ const updateClothes = async (req, res) => {
 };
 
 const deleteClothes = async (req, res) => {
+  //#swagger.tags=['Clothes']
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid clothes id to delete a clothes.');
   }

@@ -2,6 +2,7 @@ const mongodb = require('../db/connection')
 const ObjectId = require('mongodb').ObjectId
 
 const getAll = async (req, res) => {
+  //#swagger.tags=['Payment Methods']
   await mongodb
     .getDataBase()
     .db('clotheStore')
@@ -18,6 +19,7 @@ const getAll = async (req, res) => {
 }
 
 const getSingleById = async (req, res) => {
+  //#swagger.tags=['Payment Methods']
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid company id')
   }
@@ -39,7 +41,7 @@ const getSingleById = async (req, res) => {
 }
 
 const getSingleByName = async (req, res) => {
-
+  //#swagger.tags=['Payment Methods']
   const methodName = req.params.method_name;
 
   await mongodb
@@ -58,6 +60,7 @@ const getSingleByName = async (req, res) => {
 }
 
 const createPaymentMethod = async (req, res) => {
+  //#swagger.tags=['Payment Methods']
   const payment = {
     method_name: req.body.method_name,
     issuer: req.body.issuer,
@@ -82,6 +85,7 @@ const createPaymentMethod = async (req, res) => {
 }
 
 const updatePaymentMethod = async (req, res) => {
+  //#swagger.tags=['Payment Methods']
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid company id')
   }
@@ -112,6 +116,7 @@ const updatePaymentMethod = async (req, res) => {
 }
 
 const deletePaymentMethod = async (req, res) => {
+  //#swagger.tags=['Payment Methods']
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid company id')
   }
