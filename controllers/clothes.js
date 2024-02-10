@@ -76,7 +76,7 @@ const createClothes = async (req, res) => {
     .insertOne(clothes)
 
     if (response.acknowledged) {
-      res.status(201).json(response)
+      res.status(201).json({ _id: response.insertedId })
     } else {
       res
         .status(500)
