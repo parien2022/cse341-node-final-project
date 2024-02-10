@@ -44,7 +44,7 @@ const createUser = async (req, res) => {
   const user = {
     name: req.body.name,
     lastName: req.body.lastName,
-    mail: req.body.email,
+    email: req.body.email,
     phone: req.body.phone,
     city:req.body.city,
     user: req.body.user,
@@ -56,7 +56,7 @@ const createUser = async (req, res) => {
     .db('clotheStore')
     .collection('users')
     .insertOne(user)
-  if (response.acknowledge) {
+  if (response.acknowledged) {
     res.status(201).json({ _id: response.insertedId })
   } else {
     res
