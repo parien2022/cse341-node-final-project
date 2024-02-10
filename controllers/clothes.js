@@ -9,7 +9,7 @@ const getAll = async (req, res) => {
     .collection('clothes')
     .find()
     .toArray()
-    .then(() => {
+    .then((clothes) => {
       res.setHeader('Content-Type', 'application/json')
       res.status(200).json(clothes)
     })
