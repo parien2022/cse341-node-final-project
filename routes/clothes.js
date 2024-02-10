@@ -1,21 +1,13 @@
 const router = require("express").Router();
-
 const clothesController = require('../controllers/clothes');
-// const validation = require('../middleware/validate');
-const { isAuthenticated } = require('../middleware/authenticate');
+const validation = require('../middleware/validate');
+//const { isAuthenticated } = require('../middleware/authenticate');
 
 router.get('/', clothesController.getAll);
-
 router.get('/:id', clothesController.getSingle);
 router.get('/name/:category', clothesController.getSingleByCategory);
-router.post('/', clothesController.createClothes);
-
-// router.post('/', validation.saveContact, clothesController.createContact);
-
-router.put("/:id", isAuthenticated, clothesController.updateClothes);
-// router.put('/:id', validation.saveContact, clothesController.updateContact);
-
-
-router.delete('/:id', isAuthenticated, clothesController.deleteClothes);
+router.post('/', validation.validateClothes,clothesController.createClothes);
+router.put("/:id", validation.validateClothes, clothesController.updateClothes);
+router.delete('/:id', clothesController.deleteClothes);
 
 module.exports = router;

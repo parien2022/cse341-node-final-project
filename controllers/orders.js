@@ -124,7 +124,7 @@ const deleteOrder = async (req, res) => {
     .db('clotheStore')
     .collection('orders')
     .deleteOne({ _id: orderId })
-  if (response.deleteCount > 0) {
+  if (response.deletedCount > 0) {
     res.status(204).send()
   } else {
     res

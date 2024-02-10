@@ -126,7 +126,7 @@ const deleteClothes = async (req, res) => {
     .deleteOne({
       _id: clothesId,
     })
-  if (response.deleteCount > 0) {
+  if (response.deletedCount > 0) {
     res.status(204).send()
   } else {
     res
