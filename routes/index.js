@@ -1,21 +1,14 @@
-
 const router = require('express').Router();
 const routesClothes = require('./clothes');
-const routeSwagger = require('./swagger');
 
 const routesPayments = require('./paymentMethods');
-//const routeSwagger = require('./swagger');
-
 
 //const passport = require('passport');
 
 //router.use('/users', )
 
 router.use('/clothes',routesClothes )
-
-router.use('/clothes',routesClothes )
 router.use('/orders', require('./orders'));
-
 router.use('/paymentMethods', routesPayments)
 router.use('/', require('./swagger'));
 
