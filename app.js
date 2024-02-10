@@ -42,7 +42,7 @@ app
   .use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }))
   .use(cors({ origin: '*' }))
 
-  .use('/', require('./routes'))
+  .use("/", require("./routes/index.js"));
 
 /*passport.use(
   new GitHubStrategy(
