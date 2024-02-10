@@ -356,7 +356,7 @@
         }
       }
     },
-    "/clothes/name/{category_name}": {
+    "/clothes/category/{category}": {
       "get": {
         "tags": [
           "Clothes"
@@ -367,7 +367,7 @@
         ],
         "parameters": [
           {
-            "name": "category_name",
+            "name": "category",
             "in": "path",
             "required": true,
             "type": "string"
@@ -546,7 +546,7 @@
         }
       }
     },
-    "/orders/{status}": {
+    "/orders/status/{status}": {
       "get": {
         "tags": [
           "Orders"
