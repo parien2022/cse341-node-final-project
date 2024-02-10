@@ -186,6 +186,9 @@
     },
     "/clothes/": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -200,6 +203,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -239,6 +245,9 @@
     },
     "/clothes/{id}": {
       "get": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -261,6 +270,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -310,6 +322,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Clothes"
+        ],
         "description": "",
         "parameters": [
           {
@@ -500,6 +515,9 @@
     },
     "/paymentMethods/": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -514,6 +532,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -556,6 +577,9 @@
     },
     "/paymentMethods/{id}": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -578,6 +602,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -627,6 +654,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "parameters": [
           {
@@ -651,6 +681,9 @@
     },
     "/paymentMethods/name/{method_name}": {
       "get": {
+        "tags": [
+          "Payment Methods"
+        ],
         "description": "",
         "produces": [
           "application/json"
