@@ -2,14 +2,13 @@ const routesClothes = require('./clothes');
 const routesOrders = require('./orders');
 const routesPayments = require('./paymentMethods');
 const routeSwagger = require('./swagger');
+const routesUsers = require('./users');
 
 const router = require('express').Router();
 
-
 //const passport = require('passport');
 
-//router.use('/users', )
-
+router.use('/users', routesUsers)
 router.use('/clothes',routesClothes )
 router.use('/orders', routesOrders);
 router.use('/paymentMethods', routesPayments)
