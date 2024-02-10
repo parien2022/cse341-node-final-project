@@ -114,7 +114,7 @@ const deleteUser = async (req, res) => {
     .deleteOne({
       _id: userId,
     })
-  if (response.deleteCount > 0) {
+  if (response.deletedCount > 0) {
     res.status(204).send()
   } else {
     res
