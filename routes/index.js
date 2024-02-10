@@ -4,12 +4,11 @@ const routesClothes = require('./clothes');
 const routeSwagger = require('./swagger');
 
 const routesPayments = require('./paymentMethods');
-//const routeSwagger = require('./swagger');
-
+const routesUsers = require('./users');
 
 //const passport = require('passport');
 
-//router.use('/users', )
+router.use('/users', routesUsers)
 
 router.use('/clothes',routesClothes )
 
@@ -17,7 +16,7 @@ router.use('/clothes',routesClothes )
 router.use('/orders', require('./orders'));
 
 router.use('/paymentMethods', routesPayments)
-router.use('/', require('./swagger'));
+router.use('/', routeSwagger);
 
 //router.get('/login', passport.authenticate('github'), (req, res) => {});
 /*
