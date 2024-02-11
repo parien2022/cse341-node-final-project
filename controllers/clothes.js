@@ -22,13 +22,10 @@ const getAll = async (req, res) => {
 const getSingle = async (req, res) => {
   //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json("Must use a valid ID to find an clothes.");
-    }
-
+    res.status(400).json('Must use a valid clothe id to find a clothe.');
+  }
    const clothesId = new ObjectId(req.params.id)
-  //  if (!ObjectId.isValid(req.params.id)) {
-  //   res.status(400).json('Must use a valid clothes id to find a clothes.');
-  //}
+
   await mongodb
     .getDataBase()
     .db('clotheStore')
@@ -44,6 +41,7 @@ const getSingle = async (req, res) => {
     })
 };
 
+<<<<<<< HEAD
 // const getSingleByCategory = async (req, res) => {
 //   //#swagger.tags=['Clothes']
 //   const category = req.params.category;
@@ -62,6 +60,26 @@ const getSingle = async (req, res) => {
 //       res.status(400).json({ message: err })
 //     })
 // }
+=======
+const getSingleByCategory = async (req, res) => {
+  //#swagger.tags=['Clothes']
+  const categoryClothes = req.params.category;
+
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .find({ category: categoryClothes })
+    .toArray()
+    .then((categoryClothe) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(categoryClothe[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
+>>>>>>> 2853b1024504ae11a633752ae427f7183850b1a2
 
 const createClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
@@ -77,19 +95,20 @@ const createClothes = async (req, res) => {
     .db('clotheStore')
     .collection('clothes')
     .insertOne(clothes)
-  if (response.acknowledge) {
-    res.status(201).json(response)
-  } else {
-    res
-      .status(500)
-      .json(response.error || 'Some error occurred while inserting the clothes')
-  }
+
+    if (response.acknowledged) {
+      res.status(201).json({ _id: response.insertedId })
+    } else {
+      res
+        .status(500)
+        .json(response.error || 'Some error ocurred while creating the clothe')
+    }
 };
 
 const updateClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
    if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to update a clothes.');
+    res.status(400).json('Must use a valid clothe id to update a clothe.');
   }
  
   const clothesId = new ObjectId(req.params.id);
@@ -111,29 +130,29 @@ const updateClothes = async (req, res) => {
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the clothes.');
+    res.status(500).json(response.error || 'Some error occurred while updating the clothe.');
   }
 };
 
 const deleteClothes = async (req, res) => {
   //#swagger.tags=['Clothes']
   if (!ObjectId.isValid(req.params.id)) {
-    res.status(400).json('Must use a valid clothes id to delete a clothes.');
+    res.status(400).json('Must use a valid clothes id to delete a clothe.');
   }
   const clothesId = new ObjectId(req.params.id);
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('clothes')
     .deleteOne({
       _id: clothesId,
     })
-  if (response.deleteCount > 0) {
+  if (response.deletedCount > 0) {
     res.status(204).send()
   } else {
     res
       .status(500)
-      .json(response.error || 'Some error occurred while deleting the clothes')
+      .json(response.error || 'Some error occurred while deleting the clothe')
   }
 };
 module.exports = {

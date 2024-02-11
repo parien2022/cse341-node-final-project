@@ -44,7 +44,7 @@ const createUser = async (req, res) => {
   const user = {
     name: req.body.name,
     lastName: req.body.lastName,
-    mail: req.body.email,
+    email: req.body.email,
     phone: req.body.phone,
     city:req.body.city,
     user: req.body.user,
@@ -56,8 +56,8 @@ const createUser = async (req, res) => {
     .db('clotheStore')
     .collection('users')
     .insertOne(user)
-  if (response.acknowledge) {
-    res.status(201).json(response)
+  if (response.acknowledged) {
+    res.status(201).json({ _id: response.insertedId })
   } else {
     res
       .status(500)
@@ -75,7 +75,7 @@ const updateUser = async (req, res) => {
   const user = {
     name: req.body.name,
     lastName: req.body.lastName,
-    mail: req.body.email,
+    mail: req.body.mail,
     phone: req.body.phone,
     city:req.body.city,
     user: req.body.user,
@@ -83,7 +83,7 @@ const updateUser = async (req, res) => {
   }
 
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('users')
     .replaceOne(
@@ -108,13 +108,13 @@ const deleteUser = async (req, res) => {
     }
   const userId = new ObjectId(req.params.id)
   const response = await mongodb
-    .getDatabase()
+    .getDataBase()
     .db('clotheStore')
     .collection('users')
     .deleteOne({
       _id: userId,
     })
-  if (response.deleteCount > 0) {
+  if (response.deletedCount > 0) {
     res.status(204).send()
   } else {
     res
