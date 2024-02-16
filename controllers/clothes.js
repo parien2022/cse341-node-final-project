@@ -27,7 +27,24 @@ const getSingle = async (req, res) => {
     res.status(200).json(lists[0]);
   });
 };
+const getSingleByCategory = async (req, res) => {
+  //#swagger.tags=['Clothes']
+  const categoryClothes = req.params.category;
 
+  await mongodb
+    .getDataBase()
+    .db('clotheStore')
+    .collection('clothes')
+    .find({ category: categoryClothes })
+    .toArray()
+    .then((categoryClothe) => {
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(categoryClothe[0])
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err })
+    })
+}
 const createClothes = async (req, res) => {
   const clothes = {
     title: req.body.title,
@@ -50,6 +67,7 @@ const updateClothes = async (req, res) => {
   }
  
   const clothesId = new ObjectId(req.params.id);
+  
   // be aware of updateOne if you only want to update specific fields
   const clothes = {
     title: req.body.title,
@@ -63,7 +81,7 @@ const updateClothes = async (req, res) => {
     .getDataBase()
     .db()
     .collection('clothes')
-    .replaceOne({ _id: userId }, clothes);
+    .replaceOne({ _id: clothesId }, clothes);
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
@@ -88,6 +106,7 @@ const deleteClothes = async (req, res) => {
 module.exports = {
   getAll,
   getSingle,
+  getSingleByCategory,
   createClothes,
   updateClothes,
   deleteClothes
