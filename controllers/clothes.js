@@ -105,7 +105,7 @@ const updateClothes = async (req, res) => {
     .db()
     .collection('clothes')
     .replaceOne({ _id: clothesId }, clothes);
-  console.log(response);
+  
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
