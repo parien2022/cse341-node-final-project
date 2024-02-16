@@ -14,7 +14,7 @@ app
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
 
-  /*.use(
+  .use(
     session({
       secret: 'secret',
       resave: false,
@@ -24,7 +24,7 @@ app
 
   .use(passport.initialize())
 
-  .use(passport.session())*/
+  .use(passport.session())
 
   .use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -44,7 +44,7 @@ app
 
   .use("/", require("./routes/"));
 
-/*passport.use(
+passport.use(
   new GitHubStrategy(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
@@ -83,7 +83,7 @@ app.get(
     req.session.user = req.user
     res.redirect('/')
   },
-);*/
+);
 
 process.on('uncaughtException', (err, origin) => {
   console.log(
