@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const validation = require('../middleware/validate')
 const usersController = require('../controllers/users');
-const validation = require('../middleware/validate');
 const authenticate = require('../middleware/authenticate')
 
 router.get('/', usersController.getAll);
