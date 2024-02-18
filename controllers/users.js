@@ -52,7 +52,7 @@ const createUser = async (req, res) => {
     .db('clotheStore')
     .collection('users')
     .insertOne(user)
-  if (response.acknowledge) {
+  if (response.acknowledged) {
     res.status(201).json(response)
   } else {
     res
@@ -63,6 +63,9 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   //#swagger.tags=['Users']
+  if (!ObjectId.isValid(req.params.id)) {
+    res.status(400).json('Must use a valid clothe id to update an user.');
+  }
   const userId = new ObjectId(req.params.id)
   const user = {
     name: req.body.name,
@@ -78,12 +81,8 @@ const updateUser = async (req, res) => {
     .getDatabase()
     .db('clotheStore')
     .collection('users')
-    .replaceOne(
-      {
-        _id: userId,
-      },
-      user,
-    )
+    .replaceOne({ _id: userId }, user);
+  
   if (response.modifiedCount > 0) {
     res.status(204).send()
   } else {
