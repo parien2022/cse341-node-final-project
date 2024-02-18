@@ -50,7 +50,6 @@ const validateClothes = async (req, res, next) => {
     category: 'required|string',
     description: 'required|string',
     image: 'required|string',
-    conditions: 'required|string',
   }
 
   await validator(req.body, validateRule, {}, (err, status) => {
