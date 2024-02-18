@@ -102,14 +102,16 @@ const updateClothes = async (req, res) => {
   };
   const response = await mongodb
     .getDataBase()
-    .db()
+    .db('clotheStore')
     .collection('clothes')
     .replaceOne({ _id: clothesId }, clothes);
   
-  if (response.modifiedCount > 0) {
-    res.status(204).send();
-  } else {
-    res.status(500).json(response.error || 'Some error occurred while updating the clothe.');
+    if (response.modifiedCount > 0) {
+      res.status(204).send()
+    } else {
+      res
+        .status(500)
+        .json(response.error || 'Some error occurred while updating the clothe.');
   }
 };
 
@@ -123,14 +125,12 @@ const deleteClothes = async (req, res) => {
     .getDataBase()
     .db('clotheStore')
     .collection('clothes')
-    .deleteOne({
-      _id: clothesId,
-    })
-  if (response.deletedCount > 0) {
-    res.status(204).send()
-  } else {
-    res
-      .status(500)
+    .deleteOne({_id: clothesId,})
+    if (response.deletedCount > 0) {
+      res.status(204).send()
+    } else {
+      res
+        .status(500)
       .json(response.error || 'Some error occurred while deleting the clothe')
   }
 };
