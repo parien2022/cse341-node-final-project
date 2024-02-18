@@ -46,7 +46,7 @@ const validateOrders = async (req, res, next) => {
 const validateClothes = async (req, res, next) => {
   const validateRule = {
     title: 'required|string',
-    price: 'required|number',
+    price: 'required|numeric',
     category: 'required|string',
     description: 'required|string',
     image: 'required|string',
