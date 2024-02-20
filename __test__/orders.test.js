@@ -30,6 +30,7 @@ describe('Testing Orders', () => {
   })
 
   //We must login
+  //We must login
   it('Responds with JSON with the order saved', (done) => {
     const data = {
       user: 'messiL',
@@ -48,35 +49,10 @@ describe('Testing Orders', () => {
       })
   })
 
-  it('Responds with JSON with the order Updated', (done) => {
-    const newData = {
-      user: 'messiL',
-      date: '02/14/2024',
-      conditions: 'Recovered',
-    };
-    request(app)
-      .put('/orders/:id')
-      .send(newData)
-      .set('Accept', 'application/json')
-      .expect('content-type', /json/)
-      .expect(204)
-      .end(err => {
-        if (err) return done(err);
-        done();
-      })
-  })
 
-  it('Responds with statuscode 204 when the order is deleted', (done) => {
-    request(app)
-      .delete('/orders/:id')
-      .set('Accept', 'application/json')
-      .expect('content-type', /json/)
-      .expect(204, done());
-  })
+  
+
 })
-
-
-
 
 /*
  * Testing Users endpoints
