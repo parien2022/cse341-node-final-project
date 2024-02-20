@@ -30,7 +30,6 @@ describe('Testing Orders', () => {
   })
 
   //We must login
-  //We must login
   it('Responds with JSON with the order saved', (done) => {
     const data = {
       user: 'messiL',
@@ -48,10 +47,6 @@ describe('Testing Orders', () => {
         done();
       })
   })
-
-
-  
-
 })
 
 /*
