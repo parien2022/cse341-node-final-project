@@ -100,3 +100,5 @@ mongodb.startDb((err) => {
     });
   }
 });
+
+module.exports = app;
