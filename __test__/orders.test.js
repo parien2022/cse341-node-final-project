@@ -65,15 +65,13 @@ describe('Testing Orders', () => {
       })
   })
 
-  it('Responds with statuscode 204 when the order is deleted', (done) => {
+  it('Responds with statusCode 204 when the order is deleted', (done) => {
     request(app)
       .delete('/orders/:id')
       .set('Accept', 'application/json')
       .expect('content-type', /json/)
       .expect(204, done());
   })
-
-
 })
 
 /*
