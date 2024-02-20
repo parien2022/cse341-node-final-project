@@ -4,7 +4,7 @@
   "description": "cse341-node-final-project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  __test__/orders.test.js --exit",
+    "test": "mocha  __test__/clotheStore.test.js --exit",
     "start": "node app.js",
     "nodemon": "nodemon app.js",
     "lint": "eslint .",
@@ -16,7 +16,6 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "D": "^1.0.0",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "express-session": "^1.18.0",
