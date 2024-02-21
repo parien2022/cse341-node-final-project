@@ -1,6 +1,6 @@
 const mockingoose = require('mockingoose');
 const clotheController = require('../controllers/clothes');
-const clothesModel = require('../models/paymentMethods');
+const clothesModel = require('../models/clothes');
 const {startDb} = require('../db/connection');
 const {ObjectId} = require('mongodb');
 
@@ -18,11 +18,11 @@ beforeAll((done) => {
   });
 
 
-describe('Testing Payment Methods', () => {
+describe('Testing Clothes', () => {
     
     let generatedId
 
-    test('Get all payment methods', async () => {
+    test('Get all Clothes', async () => {
 
 
         const clothes = [];
@@ -42,7 +42,7 @@ describe('Testing Payment Methods', () => {
     })
 
 
-    test('Get payment methods by ID', async () => {
+    test('Get Clothe by ID', async () => {
 
         const clotheId = new ObjectId("65c3e9cb7b3963d5efdf6d3c");
 
@@ -71,7 +71,7 @@ describe('Testing Payment Methods', () => {
     })
 
 
-    test('Get payment methods by Name', async () => {
+    test('Get Clothe by Category', async () => {
 
 
         const clotheId = new ObjectId("65c0e67649d439ae1d68094e");
@@ -102,7 +102,7 @@ describe('Testing Payment Methods', () => {
     })
 
 
-    test('Insert payment method', async () => {
+    test('Insert Clothe', async () => {
 
         const req = {
             body:{
@@ -130,7 +130,7 @@ describe('Testing Payment Methods', () => {
     })
 
 
-    test('Update payment method', async () => {
+    test('Update Clothe', async () => {
 
         const req = {
             body:{
@@ -157,7 +157,7 @@ describe('Testing Payment Methods', () => {
     })
 
 
-    test('Delete payment method', async () => {
+    test('Delete Clothe', async () => {
 
         const req = {
             params: {id: generatedId.toString()}
