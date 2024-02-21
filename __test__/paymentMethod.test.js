@@ -18,9 +18,9 @@ beforeAll((done) => {
   });
 
 
-
-
 describe('Testing Payment Methods', () => {
+    
+    let generatedId
 
     test('Get all payment methods', async () => {
 
@@ -125,6 +125,8 @@ describe('Testing Payment Methods', () => {
         await paymentController.createPaymentMethod(req, res);
     
         expect(res.status).toBeCalledWith(201);
+
+        generatedId = res.json.mock.calls[0][0]._id;
     })
 
 
@@ -158,7 +160,7 @@ describe('Testing Payment Methods', () => {
     test('Delete payment method', async () => {
 
         const req = {
-            params: {id: "65d54ee3459f839eb8d8703e"}
+            params: {id: generatedId.toString()}
         }
 
         mockingoose(paymentModel).toReturn({ req }, 'deleteOne');
