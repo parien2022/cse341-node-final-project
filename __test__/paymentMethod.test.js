@@ -158,7 +158,7 @@ describe('Testing Payment Methods', () => {
     test('Delete payment method', async () => {
 
         const req = {
-            params: {id: "65d54d341468601d3f8044b0"}
+            params: {id: "65d54ee3459f839eb8d8703e"}
         }
 
         mockingoose(paymentModel).toReturn({ req }, 'deleteOne');
