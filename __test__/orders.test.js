@@ -19,9 +19,7 @@ beforeAll((done) => {
 
 
   describe('Testing Orders', () => {
-
     let generatedId
-
     test('Get all Orders', async () => {
         const orders = [];
         mockingoose(orderModel).toReturn(orders, 'find');
@@ -56,7 +54,6 @@ beforeAll((done) => {
         expect(res.json).toBeCalledWith(orders);
     })
 
-
     test('Get Orders by Conditions', async () => {
         const orderId = new ObjectId("65c0eb0849d439ae1d680957");
         const condition = "delivered";
@@ -79,7 +76,6 @@ beforeAll((done) => {
         expect(res.json).toBeCalledWith(orders);
     })
 
-
     test('Insert Order', async () => {
         const req = {
             body:{
@@ -100,7 +96,6 @@ beforeAll((done) => {
         generatedId = res.json.mock.calls[0][0]._id;
     })
 
-
     test('Update Order', async () => {
         const req = {
             body:{
@@ -119,7 +114,6 @@ beforeAll((done) => {
         await ordersController.updateOrder(req, res);
         expect(res.status).toBeCalledWith(204);
     })
-
 
     test('Delete Order', async () => {
         const req = {
