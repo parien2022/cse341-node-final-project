@@ -1,0 +1,150 @@
+
+## Render
+
+## Users
+
+## API Docs
+https://clothing-store-api.onrender.com/api-docs
+
+## GET all users
+[GET] https://clothing-store-api.onrender.com/users/
+
+## GET user by ID
+[GET] https://clothing-store-api.onrender.com/users/:id
+
+## INSERT user
+[POST] https://clothing-store-api.onrender.com/users
+
+body: {
+    name: "any",
+    lastName: "any",
+    email: "any",
+    phone: "any",
+    city: "any",
+    user: "any",
+    password: "any"
+}
+
+## UPDATE user by ID
+[PUT] https://clothing-store-api.onrender.com/users/:id
+
+body: {
+    name: "any",
+    lastName: "any",
+    email: "any",
+    phone: "any",
+    city: "any",
+    user: "any",
+    password: "any"
+}
+
+## DELETE user by ID
+[DELETE] https://clothing-store-api.onrender.com/users/:id
+
+
+## Clothes
+
+## GET all clothes
+[GET] https://clothing-store-api.onrender.com/clothes/
+
+## GET clothe by ID
+[GET] https://clothing-store-api.onrender.com/clothes/:id
+
+## GET clothe by Category
+[GET] https://clothing-store-api.onrender.com/clothes/name/:category
+
+## INSERT clothe
+[POST] https://clothing-store-api.onrender.com/clothes
+
+body: {
+    title: "any",
+    price: "any",
+    category: "any",
+    description: "any",
+    image: "any"
+}
+
+## UPDATE clothe by ID
+[PUT] https://clothing-store-api.onrender.com/clothes/:id
+
+body: {
+    title: "any",
+    price: "any",
+    category: "any",
+    description: "any",
+    image: "any"
+}
+
+## DELETE clothe by ID
+[DELETE] https://clothing-store-api.onrender.com/clothes/:id
+
+
+
+## Orders
+
+## GET all orders
+[GET] https://clothing-store-api.onrender.com/orders/
+
+## GET order by ID
+[GET] https://clothing-store-api.onrender.com/orders/:id
+
+## GET order by Category
+[GET] https://clothing-store-api.onrender.com/orders/name/:conditions
+
+## INSERT order
+[POST] https://clothing-store-api.onrender.com/orders
+
+body: {
+    user: "any",
+    date: "any",
+    conditions: "any"
+}
+
+## UPDATE order by ID
+[PUT] https://clothing-store-api.onrender.com/orders/:id
+
+body: {
+    user: "any",
+    date: "any",
+    conditions: "any"
+}
+
+## DELETE order by ID
+[DELETE] https://clothing-store-api.onrender.com/orders/:id
+
+
+## PaymentMethods
+
+## GET all paymentMethods
+[GET] https://clothing-store-api.onrender.com/paymentMethods/
+
+## GET payment method by ID
+[GET] https://clothing-store-api.onrender.com/paymentMethods/:id
+
+## GET payment method by Category
+[GET] https://clothing-store-api.onrender.com/paymentMethods/name/:card_number
+
+## INSERT payment method
+[POST] https://clothing-store-api.onrender.com/paymentMethods
+
+body: {
+    method_name: "any",
+    issuer: "any",
+    card_number: "any",
+    expiration_date: "any",
+    cvv: "any"
+}
+
+## UPDATE payment method by ID
+[PUT] https://clothing-store-api.onrender.com/paymentMethods/:id
+
+body: {
+    method_name: "any",
+    issuer: "any",
+    card_number: "any",
+    expiration_date: "any",
+    cvv: "any"
+}
+
+## DELETE payment method by ID
+[DELETE] https://clothing-store-api.onrender.com/paymentMethods/:id
