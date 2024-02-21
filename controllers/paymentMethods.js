@@ -12,6 +12,7 @@ const getAll = async (req, res) => {
     .then((companies) => {
       res.setHeader('Content-Type', 'application/json')
       res.status(200).json(companies)
+      
     })
     .catch((err) => {
       res.status(400).json({ message: err })
@@ -40,19 +41,19 @@ const getSingleById = async (req, res) => {
     })
 }
 
-const getSingleByName = async (req, res) => {
+const getSingleByCard = async (req, res) => {
   //#swagger.tags=['Payment Methods']
-  const methodName = req.params.method_name;
+  const cardNumber = req.params.card_number;
 
   await mongodb
     .getDataBase()
     .db('clotheStore')
     .collection('paymentMethods')
-    .find({ method_name: methodName })
+    .find({ card_number: cardNumber })
     .toArray()
-    .then((method) => {
+    .then((payment) => {
       res.setHeader('Content-Type', 'application/json')
-      res.status(200).json(method[0])
+      res.status(200).json(payment[0])
     })
     .catch((err) => {
       res.status(400).json({ message: err })
@@ -141,7 +142,7 @@ const deletePaymentMethod = async (req, res) => {
 module.exports = {
   getAll,
   getSingleById,
-  getSingleByName,
+  getSingleByCard,
   createPaymentMethod,
   updatePaymentMethod,
   deletePaymentMethod,
